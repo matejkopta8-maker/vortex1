@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VortexForge | Elitná Esport Organizácia</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome pre ikony -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ZÁKLADNÉ NASTAVENIA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0b0914;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4, .brand-text {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* PLÁVAJÚCE GAMING PRVKY V POZADÍ (E-ŠPORT VIBE) */
+        .gaming-bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(139, 92, 246, 0.08);
+            animation: floatUp 15s linear infinite;
+            font-size: 2rem;
+        }
+
+        .floating-icon:nth-child(1) { left: 10%; animation-duration: 12s; font-size: 3rem; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { left: 25%; animation-duration: 18s; font-size: 2.5rem; animation-delay: 2s; }
+        .floating-icon:nth-child(3) { left: 45%; animation-duration: 14s; font-size: 4rem; animation-delay: 4s; }
+        .floating-icon:nth-child(4) { left: 65%; animation-duration: 16s; font-size: 3.5rem; animation-delay: 1s; }
+        .floating-icon:nth-child(5) { left: 80%; animation-duration: 20s; font-size: 2.8rem; animation-delay: 3s; }
+        .floating-icon:nth-child(6) { left: 90%; animation-duration: 13s; font-size: 3.2rem; animation-delay: 5s; }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* VIDITEĽNÉ LOGO */
+        .vf-logo-svg {
+            height: 55px;
+            width: auto;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.8));
+            transition: transform 0.3s ease;
+        }
+
+        .vf-logo-svg:hover {
+            transform: scale(1.05);
+        }
+
+        .vf-logo-small {
+            height: 38px;
+            width: auto;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+        }
+
+        /* HLAVIČKA */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: rgba(11, 9, 20, 0.95);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .brand-name span {
+            color: #8b5cf6;
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #d1d5db;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #8b5cf6;
+            text-shadow: 0 0 12px rgba(139, 92, 246, 0.7);
+        }
+
+        /* TLAČIDLÁ */
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(139, 92, 246, 0.8);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #8b5cf6;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* PODSTRÁNKY */
+        .page-section {
+            display: none;
+            padding-top: 130px;
+            min-height: 100vh;
+        }
+
+        #page-home {
+            display: block;
+        }
+
+        /* HERO SEKCIA */
+        .hero {
+            min-height: calc(100vh - 90px);
+            background: radial-gradient(circle at center, #1e1138 0%, #0b0914 85%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 950px;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid #8b5cf6;
+            color: #c4b5fd;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .hero-content h1 span {
+            color: #8b5cf6;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #9ca3af;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ŠTATISTIKY */
+        .stats-bar {
+            background: #100d1d;
+            border-top: 1px solid rgba(139, 92, 246, 0.3);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.8rem;
+            color: #8b5cf6;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+        }
+
+        .stat-item p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* NADPISY */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 0 20px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-title h2 span {
+            color: #8b5cf6;
+        }
+
+        .section-title p {
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        /* TÍMY */
+        .teams-section {
+            padding: 40px 5% 100px;
+            background: #100d1d;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background: #17132a;
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 35px rgba(139, 92, 246, 0.3);
+        }
+
+        .team-icon {
+            font-size: 3.2rem;
+            color: #8b5cf6;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .team-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+        }
+
+        .team-card p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .roster-list {
+            list-style: none;
+            text-align: left;
+            background: #100d1d;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .roster-list li {
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            justify-content: space-between;
+            color: #d1d5db;
+        }
+
+        .roster-list li:last-child {
+            border-bottom: none;
+        }
+
+        .roster-list li span.role {
+            color: #8b5cf6;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* ZÁPASY */
+        .tournaments-section {
+            padding: 40px 5% 100px;
+            background: #0b0914;
+        }
+
+        .matches-container {
+            max-width: 950px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .match-card {
+            background: #141026;
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 10px;
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .match-card:hover {
+            background: #191330;
+            border-color: #8b5cf6;
+        }
+
+        .game-tag {
+            background: rgba(139, 92, 246, 0.25);
+            color: #8b5cf6;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .match-info {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .match-info .team-name {
+            font-weight: 700;
+        }
+
+        .match-info .vs {
+            color: #8b5cf6;
+            font-size: 0.95rem;
+        }
+
+        .match-info .opponent {
+            color: #9ca3af;
+        }
+
+        .match-time {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-small {
+            background: #231b3d;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-small:hover {
+            background: #8b5cf6;
+            transform: translateY(-2px);
+        }
+
+        /* NOVINKY */
+        .news-section {
+            padding: 40px 5% 100px;
+            background: #100d1d;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 35px;
+        }
+
+        .news-card {
+            background: #17132a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .news-img {
+            height: 240px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 30px;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: #8b5cf6;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .news-content h3 {
+            font-size: 1.35rem;
+            margin: 12px 0 15px;
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .read-more {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .read-more:hover {
+            color: #8b5cf6;
+        }
+
+        /* O NÁS */
+        .about-page-content {
+            padding: 40px 5% 100px;
+            background: #0b0914;
+        }
+
+        .about-grid-custom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .about-text-box h3 {
+            font-size: 2.3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .about-text-box h3 span {
+            color: #8b5cf6;
+        }
+
+        .about-text-box p {
+            color: #9ca3af;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .about-img-box img {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 35px rgba(139, 92, 246, 0.25);
+        }
+
+        /* SPONZORI */
+        .sponsors-section {
+            padding: 60px 5%;
+            text-align: center;
+            background: #0b0914;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .sponsors-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            opacity: 0.6;
+        }
+
+        .sponsors-grid i {
+            font-size: 2.8rem;
+            color: #ffffff;
+            transition: opacity 0.3s, color 0.3s;
+        }
+
+        .sponsors-grid i:hover {
+            opacity: 1;
+            color: #8b5cf6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #07050d;
+            padding: 80px 5% 30px;
+            border-top: 2px solid rgba(139, 92, 246, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col .footer-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #8b5cf6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            background: #141026;
+            color: #ffffff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .social-icons a:hover {
+            background: #8b5cf6;
+            border-color: #8b5cf6;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 900px) {
+            header {
+                padding: 0 4%;
+                height: 80px;
+            }
+            .brand-name {
+                font-size: 1.2rem;
+            }
+            nav ul {
+                gap: 15px;
+            }
+            nav ul li a {
+                font-size: 0.9rem;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1.05rem;
+            }
+            .about-grid-custom {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .page-section {
+                padding-top: 105px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            nav {
+                display: none;
+            }
+            .hero-content h1 {
+                font-size: 2.1rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- DYNAMICKÉ PLÁVAJÚCE PRVKY V POZADÍ (GAMING VIBE) -->
+<div class="gaming-bg-elements">
+    <i class="fa-solid fa-gamepad floating-icon" style="left: 5%;"></i>
+    <i class="fa-solid fa-crosshairs floating-icon" style="left: 20%;"></i>
+    <i class="fa-solid fa-bolt floating-icon" style="left: 40%;"></i>
+    <i class="fa-solid fa-headset floating-icon" style="left: 60%;"></i>
+    <i class="fa-solid fa-shield-halved floating-icon" style="left: 75%;"></i>
+    <i class="fa-solid fa-trophy floating-icon" style="left: 90%;"></i>
+</div>
+
+<!-- HLAVIČKA -->
+<header>
+    <a href="#home" onclick="switchPage('home')" class="logo-container">
+        <svg class="vf-logo-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 50 L120 170 L200 50 L160 50 L120 110 L80 50 Z" fill="#ffffff"/>
+            <path d="M75 95 C100 70 140 70 165 95 C140 120 100 120 75 95 Z" fill="#8b5cf6" stroke="#000" stroke-width="4"/>
+            <circle cx="120" cy="95" r="16" fill="#000000"/>
+            <circle cx="120" cy="95" r="7" fill="#ffffff"/>
+        </svg>
+        <span class="brand-name">VORTEX<span>FORGE</span></span>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="switchPage('home')" id="nav-home" class="active">Domov</a></li>
+            <li><a href="#" onclick="switchPage('about')" id="nav-about">O nás</a></li>
+            <li><a href="#" onclick="switchPage('teams')" id="nav-teams">Tímy</a></li>
+            <li><a href="#" onclick="switchPage('tournaments')" id="nav-tournaments">Zápasy</a></li>
+            <li><a href="#" onclick="switchPage('news')" id="nav-news">Novinky</a></li>
+        </ul>
+    </nav>
+    <div class="header-btn">
+        <a href="#" onclick="switchPage('tournaments')" class="btn-primary">Sledovať live</a>
+    </div>
+</header>
+
+<!-- 1. DOMOV -->
+<section id="page-home" class="page-section" style="display: block;">
+    <div class="hero">
+        <div class="hero-content">
+            <span class="hero-badge"><i class="fa-solid fa-fire"></i> Sezóna 2026 v plnom prúde</span>
+            <h1>DOMOV PRAVÝCH <span>E-ŠPORTOVÝCH</span> LEGEND</h1>
+            <p>VortexForge je elitná medzinárodná organizácia spájajúca najlepších hráčov, analytikov a tvorcov obsahu. Sme pripravení prepísať históriu kompetitívneho hrania.</p>
+            <div class="hero-buttons">
+                <a href="#" onclick="switchPage('tournaments')" class="btn-primary">Nadchádzajúce zápasy</a>
+                <a href="#" onclick="switchPage('teams')" class="btn-secondary">Naše súpisky</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <h3>24+</h3>
+            <p>Medzinárodných trofejí</p>
+        </div>
+        <div class="stat-item">
+            <h3>4</h3>
+            <p>Herné divízie</p>
+        </div>
+        <div class="stat-item">
+            <h3>20+</h3>
+            <p>Pro hráčov v klube</p>
+        </div>
+        <div class="stat-item">
+            <h3>250k+</h3>
+            <p>Fanúšikov po svete</p>
+        </div>
+    </div>
+
+    <div class="sponsors-section">
+        <h4 style="font-family:'Orbitron'; color:#9ca3af; letter-spacing:2px; font-size:0.9rem;">HRDÍ PARTNERI ORGANIZÁCIE</h4>
+        <div class="sponsors-grid">
+            <i class="fa-solid fa-bolt"></i>
+            <i class="fa-solid fa-gamepad"></i>
+            <i class="fa-solid fa-microchip"></i>
+            <i class="fa-solid fa-headphones"></i>
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+    </div>
+</section>
+
+<!-- 2. O NÁS -->
+<section id="page-about" class="page-section">
+    <div class="section-title">
+        <h2>O ORGANIZÁCII <span>VORTEXFORGE</span></h2>
+        <p>Zistite viac o našom zázemí, histórii a tréningovej filozofii</p>
+    </div>
+    <div class="about-page-content">
+        <div class="about-grid-custom">
+            <div class="about-text-box">
+                <h3>VZNIK A VÍZIA <span>DOMINANCIE</span></h3>
+                <p>Organizácia VortexForge vznikla s jediným cieľom: vybudovať profesionálny ekosystém, kde majú talentovaní hráči tie najlepšie podmienky na rast, mentálnu prípravu a víťazstvá na globálnych turnajoch.</p>
+                <p>Náš najmodernejší Gaming House v centre Európy poskytuje hráčom 24/7 zázemie, špičkový hardware, individuálnych fyzioterapeutov a analytický tím, ktorý študuje každučký detail súperovej hry.</p>
+                <a href="#" onclick="switchPage('teams')" class="btn-primary">Zoznámiť sa s hráčmi</a>
+            </div>
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" alt="Gaming House VortexForge">
+            </div>
+        </div>
+
+        <div class="about-grid-custom" style="margin-top: 80px;">
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Pro Setup">
+            </div>
+            <div class="about-text-box">
+                <h3>ŠPIČKOVÉ <span>VYBAVENIE</span> A TRÉNING</h3>
+                <p>Každý člen našej zostavy disponuje custom zostavou s najnovšími grafickými kartami, vysokoreaktívnymi monitormi a špeciálnym ergonomickým príslušenstvom. Vďaka tomu dokážeme eliminovať akúkoľvek latenciu a podať maximálny výkon pod tlakom.</p>
+                <p>Pravidelne organizujeme aj bootcampy a tímové teambuildingy pre upevnenie silnej synergie v kolektíve.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. TÍMY -->
+<section id="page-teams" class="page-section">
+    <div class="section-title">
+        <h2>NAŠE ELITNÉ <span>SEKCIE A TÍMY</span></h2>
+        <p>Súpisky hráčov, ktorí reprezentujú VortexForge na medzinárodných ligách</p>
+    </div>
+    <div class="teams-section">
+        <div class="teams-grid">
+            <div class="team-card">
+                <div class="team-icon"><i class="fa-solid fa-crosshairs"></i></div>
+                <h3>CS2 Division</h3>
+                <p>Taktická precíznosť, bleskový aim a chladnokrvné uzavretia kôl v 1v2 situáciách.</p>
+                <ul class="roster-list">
+                    <li><span>Captain / AWPer</span> <strong>"Vortex_Frenzy"</strong></li>
+                    <li><span>Entry Fragger</span> <strong>"ShadowX"</strong></li>
+                    <li><span>Rifle / Support</span> <strong>"Blazor"</strong></li>
+                    <li><span>IGL / Tactician</span> <strong>"Kryz"</strong></li>
+                    <li><span>Coach</span> <strong>"Mastermind"</strong></li>
+                </ul>
+                <span style="color:#8b5cf6; font-weight:700; font-size:0.85rem; font-family:'Orbitron';">STATUS: AKTÍVNA LIGA</span>
+            </div>
+            <div class="team-card">
+                <div class="team-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>VALORANT Squad</h3>
+                <p>Dokonalá synergia agentov, kreatívne set-upy a nekompromisná kontrola objektívov.</p>
+                <ul class="roster-list">
+                    <li><span>Duelist</span> <strong>"Stryker"</strong></li>
+                    <li><span>Initiator</span> <strong>"NeonPulse"</strong></li>
+                    <li><span>Controller</span> <strong>"SmokeZ"</strong></li>
+                    <li><span>Sentinel</span> <strong>"Guardian"</strong></li>
+                    <li><span>Coach</span> <strong>"Spectre"</strong></li>
+                </ul>
+                <span style="color:#8b5cf6; font-weight:700; font-size:0.85rem; font-family:'Orbitron';">STATUS: VCT KVALIFIKÁCIA</span>
+            </div>
+            <div class="team-card">
+                <div class="team-icon"><i class="fa-solid fa-gamepad"></i></div>
+                <h3>League of Legends</h3>
+                <p>Výborné macro hranie, precízne rotácie a dominancia v tímových bitkách na Riftu.</p>
+                <ul class="roster-list">
+                    <li><span>Top Lane</span> <strong>"Titan"</strong></li>
+                    <li><span>Jungle</span> <strong>"GankMaster"</strong></li>
+                    <li><span>Mid Lane</span> <strong>"Apex"</strong></li>
+                    <li><span>ADC / Bot</span> <strong>"Viper"</strong></li>
+                    <li><span>Support</span> <strong>"Shield"</strong></li>
+                </ul>
+                <span style="color:#8b5cf6; font-weight:700; font-size:0.85rem; font-family:'Orbitron';">STATUS: PLAYOFF BOJE</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. ZÁPASY -->
+<section id="page-tournaments" class="page-section">
+    <div class="section-title">
+        <h2>HARMONOGRAM <span>ZÁPASOV A TURNAJOV</span></h2>
+        <p>Nenechajte si ujsť ani jeden priamy prenos našich tímov</p>
+    </div>
+    <div class="tournaments-section">
+        <div class="matches-container">
+            <div class="match-card">
+                <div class="game-tag">CS2 - ESL Challenger</div>
+                <div class="match-info">
+                    <span class="team-name">VortexForge</span>
+                    <span class="vs">VS</span>
+                    <span class="team-name opponent">CyberSpike Gaming</span>
+                </div>
+                <div class="match-time"><i class="fa-regular fa-clock"></i> Dnes, 18:00 CET</div>
+                <a href="#" class="btn-small">Twitch Stream</a>
+            </div>
+            <div class="match-card">
+                <div class="game-tag">VALORANT - Radiant Cup</div>
+                <div class="match-info">
+                    <span class="team-name">VortexForge</span>
+                    <span class="vs">VS</span>
+                    <span class="team-name opponent">Nexus Esports</span>
+                </div>
+                <div class="match-time"><i class="fa-regular fa-clock"></i> Zajtra, 20:30 CET</div>
+                <a href="#" class="btn-small">Twitch Stream</a>
+            </div>
+            <div class="match-card">
+                <div class="game-tag">LoL - European Masters</div>
+                <div class="match-info">
+                    <span class="team-name">VortexForge</span>
+                    <span class="vs">VS</span>
+                    <span class="team-name opponent">Alpha Dynasty</span>
+                </div>
+                <div class="match-time"><i class="fa-regular fa-clock"></i> Sobota, 17:00 CET</div>
+                <a href="#" class="btn-small">Twitch Stream</a>
+            </div>
+            <div class="match-card">
+                <div class="game-tag">CS2 - Blast Premier</div>
+                <div class="match-info">
+                    <span class="team-name">VortexForge</span>
+                    <span class="vs">VS</span>
+                    <span class="team-name opponent">Titanium Gaming</span>
+                </div>
+                <div class="match-time"><i class="fa-regular fa-clock"></i> Nedeľa, 19:15 CET</div>
+                <a href="#" class="btn-small">Twitch Stream</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. NOVINKY -->
+<section id="page-news" class="page-section">
+    <div class="section-title">
+        <h2>NAJNOVŠIE <span>ČLÁNKY A ÚSPECHY</span></h2>
+        <p>Pohľad do zákulisia našej organizácie a najnovšie prestupy</p>
+    </div>
+    <div class="news-section">
+        <div class="news-grid">
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80" alt="Víťazstvo na turnaji" class="news-img">
+                <div class="news-content">
+                    <span class="news-date">10. November 2026</span>
+                    <h3>Dominancia na celoštátnom online turnaji v CS2!</h3>
+                    <p>Náš CS2 tím predviedol famózny výkon a ovládol finálovú sériu výsledkom 2:0 bez straty jedinej mapy. Ďakujeme fanúšikom za podporu!</p>
+                    <a href="#" class="read-more">Čítať celý článok <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Aréna turnaj" class="news-img">
+                <div class="news-content">
+                    <span class="news-date">05. November 2026</span>
+                    <h3>Predstavenie novej posily do VALORANT zostavy</h3>
+                    <p>Do našich radov oficiálne prichádza skúsenejší sniper, ktorý posunie našu taktickú hru na úplne novú úroveň v nadchádzajúcej kvalifikácii.</p>
+                    <a href="#" class="read-more">Čítať celý článok <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Gaming House" class="news-img">
+                <div class="news-content">
+                    <span class="news-date">28. Október 2026</span>
+                    <h3>Nové partnerstvo so svetovým výrobcom hardwaru</h3>
+                    <p>Hrdci oznamujeme spoluprácu s poprednou značkou herného príslušenstva. Naši hráči budú testovať najnovšie prototypy klávesníc.</p>
+                    <a href="#" class="read-more">Čítať celý článok <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PÄTIČKA -->
+<footer id="contact">
+    <div class="footer-content">
+        <div class="footer-col">
+            <div class="footer-logo-row">
+                <svg class="vf-logo-small" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M40 50 L120 170 L200 50 L160 50 L120 110 L80 50 Z" fill="#ffffff"/>
+                    <path d="M75 95 C100 70 140 70 165 95 C140 120 100 120 75 95 Z" fill="#8b5cf6" stroke="#fff" stroke-width="3"/>
+                    <circle cx="120" cy="95" r="16" fill="#ffffff"/>
+                    <circle cx="120" cy="95" r="6" fill="#000000"/>
+                </svg>
+                <span class="brand-name" style="font-size: 1.2rem;">VORTEX<span>FORGE</span></span>
+            </div>
+            <p>Profesionálna e-športová organizácia orientovaná na víťazstvá, komunitu a špičkové herné výkony na medzinárodnej scéne.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Rýchle odkazy</h4>
+            <ul>
+                <li><a href="#" onclick="switchPage('home')">Domov</a></li>
+                <li><a href="#" onclick="switchPage('about')">O nás</a></li>
+                <li><a href="#" onclick="switchPage('teams')">Naše Tímy</a></li>
+                <li><a href="#" onclick="switchPage('tournaments')">Zápasy</a></li>
+                <li><a href="#" onclick="switchPage('news')">Novinky</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Komunita & Podpora</h4>
+            <ul>
+                <li><a href="#">Discord Server</a></li>
+                <li><a href="#">Merchandise Shop</a></li>
+                <li><a href="#">Kariéra v tíme</a></li>
+                <li><a href="#">Pravidlá komunity</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Sledujte nás</h4>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-twitch"></i></a>
+                <a href="#"><i class="fa-brands fa-discord"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 VortexForge Esports. Všetky práva vyhradené. Vytvorené pre skutočných hráčov.</p>
+    </div>
+</footer>
+
+<!-- SCRIPT -->
+<script>
+    function switchPage(pageId) {
+        const sections = document.querySelectorAll('.page-section');
+        sections.forEach(sec => sec.style.display = 'none');
+
+        const target = document.getElementById('page-' + pageId);
+        if (target) {
+            target.style.display = 'block';
+        }
+
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => link.classList.remove('active'));
+
+        const activeNav = document.getElementById('nav-' + pageId);
+        if (activeNav) {
+            activeNav.classList.add('active');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
